@@ -1,50 +1,46 @@
-//Global Variables 
-  ball b1;
-  ball b2;
-  ball b3;
-  
+//Global Variables
+Ball b1;
+Ball b2;
+Ball b3;
 
-//Setup method
+//Setup Method
 public void setup()
 {
-  size(800, 800);
+  size(800, 800);  
   background(120);
-  b1 = new ball();
-  b2 = new ball();
-  b3 = new ball();
-  
-  
+  b1 = new Ball();
+  b2 = new Ball();
+  b3 = new Ball(5, 80);
 }
 
-//Draw method
+//Draw Method
 public void draw()
 {
   background(120);
   b1.update();
   b1.drawBall();
   b1.checkEdges();
-  
   b2.update();
   b2.drawBall();
   b2.checkEdges();
-  
   b3.update();
   b3.drawBall();
   b3.checkEdges();
 }
 
-public class ball 
+public class Ball
 {
-  //instance variables
+  //Instance Variables
   private int x;
   private int y;
-  private int xD; 
+ 
+  private int xD;
   private int yD;
+ 
   private int diameter;
-  
-  public ball()
   //Assume size(800, 800)
-  //constructors
+  //Constructors
+  public Ball()
   {
     x = (int)(Math.random()*800);
     y = (int)(Math.random()*800);
@@ -52,54 +48,32 @@ public class ball
     yD = 5;
     diameter = (int)(Math.random()*50 + 10);
   }
-  
-  //Constructor that will in speed(xD & yD) and diameter
-  public int speed(int xD, int yD, diameter)
+ 
+  public Ball(int speed, int d)
   {
-    speedx = xD;
-    
-  
+    x = (int)(Math.random()*800);
+    y = (int)(Math.random()*800);
+    xD = speed;
+    yD = speed;
+    diameter = d;
   }
-  
-  //method
+  //Methods
   public void update()
   {
-    x += xD;
-    y += yD;
+    x+=xD;
+    y+=yD;
   }
+ 
   public void drawBall()
   {
     ellipse(x, y, diameter, diameter);
-    
   }
-  
+ 
   public void checkEdges()
   {
-    if(x < 0 || x > width)
-      xD *= -1;
-      
-    if(y > height || y < 0)
-      yD *= -1;
-    
+    if (x < 0 || x > width)
+    xD*=-1;
+    if(y < 0 || y > height)
+    yD*=-1;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-}
-
-
-
-
-  
-  
-  
-  
-  
-  
-  
 }
